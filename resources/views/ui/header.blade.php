@@ -61,6 +61,11 @@
         #dark-title.toggle-mode:hover span{
             color: white;
         }
+        @media (max-width:991px){
+            .fixed-title.toggle-mode.cursor-pt{
+                display: none;
+            }
+        }
     </style>
     @yield('css')
 </head>
