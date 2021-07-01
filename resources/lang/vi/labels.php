@@ -1,0 +1,26 @@
+<?php
+return [
+    'home' => 'TRANG CHỦ',
+    'collections' => 'BỘ SƯU TẬP',
+    'studio' => 'STUDIO',
+    'about_me' => 'GIỚI THIỆU',
+    'contact' => 'LIÊN HỆ',
+    'event' => 'TRIỂN LÃM VÀ SỰ KIỆN',
+    'book' => 'SÁCH',
+    'name' => 'Họ và tên',
+    'birthday' => 'Ngày Sinh',
+    'country' => 'Quê Quán',
+    'graduation' => 'Tốt Nghiệp',
+    'qdnt' => "Quan điểm nghệ thuật",
+    'description' => 'Mô tả',
+    'address' => 'Địa chỉ',
+    'write_us' => 'LIÊN LẠC',
+    'message' => 'Tin Nhắn',
+    'submit' => 'Gửi',
+    'phone' => 'Số điện thoại',
+    'query' => 'Query',
+    'news' => 'Tin tức',
+    'view_more' => 'View more',
+    'new_collection' => 'Bộ Sưu Tập Mới',
+    'newest_collection' => 'Bộ Sưu Tập Mới Nhất'
+];

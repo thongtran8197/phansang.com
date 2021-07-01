@@ -1,0 +1,26 @@
+<?php
+return [
+    'home' => 'Domicile',
+    'collections' => 'COLLECTIONS',
+    'studio' => 'STUDIO',
+    'about_me' => 'BIOGRAPHIE',
+    'contact' => 'CONTACT',
+    'event' => 'EXPOSITIONS ET ÉVÉNEMENTS',
+    'book' => 'LIVRE',
+    'name' => 'Nom',
+    'birthday' => 'Le jour de naissance',
+    'country' => 'Ville Natale',
+    'graduation' => 'Graduation',
+    'qdnt' => "Point de vue dans l'art",
+    'description' => 'Description',
+    'address' => 'Address',
+    'write_us' => 'Écrivez pour nous',
+    'message' => 'Message',
+    'submit' => 'Soumettre',
+    'phone' => 'phone',
+    'query' => 'Mettre en doute',
+    'news' => 'Nouvelles',
+    'view_more' => 'Voir plus',
+    'new_collection' => 'Nouvelle Collection',
+    'newest_collection' => 'Dernier Collection'
+];

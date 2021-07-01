@@ -1,0 +1,26 @@
+<?php
+return [
+    'home' => 'HOME',
+    'collections' => 'COLLECTIONS',
+    'studio' => 'STUDIO',
+    'about_me' => 'BIOGRAPHY',
+    'contact' => 'CONTACT',
+    'event' => 'EXHIBITIONS AND EVENTS',
+    'book' => 'BOOKS',
+    'name' => 'Name',
+    'birthday' => 'Birthday',
+    'country' => 'Country',
+    'graduation' => 'Graduation',
+    'qdnt' => 'Point of view in art',
+    'description' => 'Description',
+    'address' => 'Address',
+    'write_us' => 'Write To Us',
+    'message' => 'Message',
+    'submit' => 'Submit',
+    'phone' => 'Phone',
+    'query' => 'Query',
+    'news' => 'News',
+    'view_more' => 'View more',
+    'new_collection' => 'New Collection',
+    'newest_collection' => 'Newest Collection'
+];
