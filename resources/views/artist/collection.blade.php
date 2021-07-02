@@ -23,29 +23,32 @@ else $locate = "_".$locate;
                 <div class="detail-content">
                     {{ $collections[$default]["description".$locate] }}
                 </div>
-                <div class="image">
-                    <a data-magnify="pc" href="/images/{{ $post[0]["image"] }}" class="zoom"><i class="fa fa-expand"></i></a>
-                    @foreach($post as $index => $item)
-                    <img data-magnify="pc" href="/images/{{ $item["image"] }}" @if($index==0) class="active" @endif src="/images/{{ $item["image"] }}">
-                    @endforeach
+                @foreach($post as $index => $item)
+                <div @if($index==0) class="image active" @else class="image" @endif>
+                    <a data-magnify="pc" href="/images/{{ $item["image"] }}" class="zoom"><i class="fa fa-expand"></i></a>
+                    <img src="/images/{{ $item["image"] }}">
                     <div class="box-info">
                         <div class="info">
                             INFO
                             <div class="info-content">
-                                <p>Name of work;<br>
-                                -size;<br>
-                                -material;<br>
-                                - Year of creation;</p>
+                                <p>
+                                    @php 
+                                    $ok = explode("\n", $item["description".$locate]);
+                                    $ok = join("<br>", $ok);
+                                    @endphp
+                                    {!! $ok !!}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
         <div class="list-collection">
             <div class="box-items">
                 @foreach($post as $index => $item)
-                <div onclick="chooseImage({{ $index }},`{{ $item["description".$locate] }}`)" class="item">
+                <div onclick="chooseImage({{ $index }})" class="item">
                     <img src="/images/{{ $item["image"] }}">
                 </div>
                 @endforeach
@@ -80,7 +83,7 @@ else $locate = "_".$locate;
             <div class="owl-carousel owl-theme box-items">
                 @foreach($post as $index => $item)
                 <div class="item">
-                    <img onclick="chooseImageMobile({{ $index }},`{{ $item["description".$locate] }}`)" src="/images/{{ $item["image"] }}">
+                    <img onclick="chooseImageMobile({{ $index }})" src="/images/{{ $item["image"] }}">
                 </div>
                 @endforeach
             </div>
@@ -151,11 +154,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </script>
 <script>
     var stt = 0;
-    function chooseImage(index, info){
-        var imageShow   = document.querySelectorAll(".box-content .detail-collection .image img");
-        var nut         = document.querySelector(".box-content .detail-collection .image a");
-        document.querySelector(".box-content .detail-collection .image .info-content p").innerHTML = info.split("\n").join("<br>");
-        nut.setAttribute("href", imageShow[index].getAttribute("href"));
+    function chooseImage(index){
+        var imageShow   = document.querySelectorAll(".box-content .detail-collection .image");
         imageShow[stt].classList.remove("active");
         imageShow[index].classList.add("active");
         stt = index;
@@ -361,6 +361,8 @@ body#dark .name-collection{
     max-height: 0;
     transition: max-height 0.6s ease-out;
     overflow: hidden;
+    line-height: 30px;
+    justify-content: center;
 }
 .box-collection .box-content .detail-collection .detail .detail-content.active{
     max-height: 1000px;
@@ -369,6 +371,10 @@ body#dark .name-collection{
 .box-collection .box-content .detail-collection .detail .image{
     position: relative;
     padding-top: 15px;
+    display: none;
+}
+.box-collection .box-content .detail-collection .detail .image.active{
+    display: block;
 }
 .box-collection .box-content .detail-collection .detail .image a.zoom{
     position: absolute;
@@ -385,10 +391,6 @@ body#dark .name-collection{
 }
 .box-collection .box-content .detail-collection .detail .image img{
     width: 100%;
-    display: none;
-}
-.box-collection .box-content .detail-collection .detail .image img.active{
-    display: block;
 }
 .box-collection .box-content .detail-collection .detail .image .box-info{
     position: absolute;
@@ -415,7 +417,7 @@ body#dark .name-collection{
 }
 .box-collection .box-content .detail-collection .detail .image .box-info .info .info-content p{
     font-size: 11px;
-    line-height: 20px;
+    line-height: 30px;
 }
 .box-collection .box-content .detail-collection .detail .image .box-info .info:hover .info-content{
     display: block;
@@ -550,6 +552,9 @@ body#dark .name-collection{
     .box-collection .box-content .detail-collection .detail .image{
         display: none;
     }
+    .box-collection .box-content .detail-collection .detail .image.active{
+        display: none;
+    }
     .box-collection .box-content .list-collection{
         display: none;
     }
@@ -613,6 +618,7 @@ body#dark .name-collection{
     }
     .box-collection .box-content .list-collection-mobile .box-active .item.active .box-info .info:hover .info-content p{
         font-size: 11px;
+        line-height: 30px;
     }
     .box-collection .box-content .list-collection-mobile .box-active img{
         width: 100%;

@@ -65,6 +65,12 @@
             .fixed-title.toggle-mode.cursor-pt{
                 display: none;
             }
+            body{
+                background: white;
+            }
+            body#dark{
+                background: #0a0a0e;
+            }
         }
     </style>
     @yield('css')
