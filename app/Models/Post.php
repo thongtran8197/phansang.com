@@ -23,11 +23,11 @@ class Post extends Model
         'detail',
         'detail_en',
         'detail_fr',
-        'content_qr',
         'created_at',
         'updated_at',
         'name',
         'name_en',
-        'name_fr'
+        'name_fr',
+        'compress_image'
     ];
 }

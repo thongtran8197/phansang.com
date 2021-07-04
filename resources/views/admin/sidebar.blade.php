@@ -64,6 +64,14 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.contact_image.get_contact_image') }}" class="nav-link <?php echo ($route == 'admin.contact_image.get_contact_image' ? "active" : "")?>">
+                            <i class="nav-icon far fas fa-th"></i>
+                            <p>
+                                Ảnh Liên Hệ
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

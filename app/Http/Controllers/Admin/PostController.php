@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Services\Translate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Intervention\Image\Facades\Image;
 use Session;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -62,13 +63,23 @@ class PostController extends Controller
         $detail = $request->get('detail') ? $request->get('detail') : "";
         $content_qr = $request->get('content_qr') ? $request->get('content_qr') : "";
         $image_name = "";
+        $compress_image = "";
         if ($request->hasFile('image')) {
             $arr_image_name = explode('.', $request->file('image')->getClientOriginalName());
             $image_name = $arr_image_name[0] . '-' . time() . '.' . $arr_image_name[1];
             $request->file('image')->move(public_path('images'), $image_name);
+
+            $img = Image::make(public_path().'/images/'.$image_name);
+            $img->resize(200, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode(null,75);
+            $compress_image = 'compress_'.$image_name;
+            $img->save(public_path().'/images/'. $compress_image);
         }
         Post::create([
             'image' => $image_name,
+            'compress_image' => $compress_image,
             'collection_id' => $collection_id,
             'description' => $description,
             'content_qr' => $content_qr,
@@ -116,12 +127,22 @@ class PostController extends Controller
                 $arr_image_name = explode('.', $request->file('image')->getClientOriginalName());
                 $image_name = $arr_image_name[0] . '-' . time() . '.' . $arr_image_name[1];
                 $request->file('image')->move(public_path('images'), $image_name);
-                //delete old image
+
+                $img = Image::make(public_path().'/images/'.$image_name);
+                $img->resize(200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->encode(null,75);
+                $compress_image = 'compress_'.$image_name;
+                $img->save(public_path().'/images/'. $compress_image);
+                //delete old image and compress image
                 if (file_exists(public_path('images/') . $post['image'])) {
                     unlink(public_path('images/') . $post['image']);
+                    unlink(public_path('images/') . $post['compress_image']);
                 }
                 $arr_update_data = array_merge($arr_update_data, [
                     'image' => $image_name,
+                    'compress' => $compress_image,
                 ]);
             }
             Post::where('id', $id)->update($arr_update_data);

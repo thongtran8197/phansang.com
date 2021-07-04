@@ -168,7 +168,7 @@ class CollectionController extends Controller
     {
         if ($collection_id) {
             $host = $request->getHttpHost();
-            $url = 'https://' . $host . '/bo-suu-tap';
+            $url = 'https://' . $host . '/bo-suu-tap/' . $collection_id;
             $qr = QrCode::format('png')
                 ->size(200)->errorCorrection('H')
                 ->generate($url);
@@ -176,47 +176,5 @@ class CollectionController extends Controller
                 'qr' => $qr
             ]);
         }
-    }
-
-    public function collection_v2(Request $request)
-    {
-        $collections = Collection::orderBy('id', 'desc')->get()->toArray();
-        return view('ui.collection_v2')->with([
-            "collections" => $collections
-        ]);
-    }
-
-    public function description_collection_v2(Request $request, $collection_id)
-    {
-        $collection = DB::table('collections')->join('posts', 'collections.main_post_id', '=', 'posts.id')
-            ->where('collections.id', $collection_id)->select(
-                'image',
-                'collections.name as c_name',
-                'collections.name_en as c_name_en',
-                'collections.name_fr as c_name_fr',
-                'collections.description as c_description',
-                'collections.description_en as c_description_en',
-                'collections.description_fr as c_description_fr'
-            )->first();
-        return view('ui.components.description_collection_v2')->with([
-            'collection' => $collection,
-        ]);
-    }
-
-    public function name_collection_v2(Request $request, $collection_id)
-    {
-        $locate = \Session::get('locale');
-        $collection = Collection::find($collection_id);
-        $ret = "";
-        if ($collection) {
-            if ($locate == 'en') {
-                $ret =  $collection->name_en;
-            } elseif ($locate == 'fr'){
-                $ret =  $collection->name_fr;
-            } else {
-                $ret =  $collection->name;
-            }
-        }
-        return $ret;
     }
 }

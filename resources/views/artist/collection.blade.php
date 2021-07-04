@@ -1,6 +1,6 @@
 @extends('ui.master')
 @section('content')
-@php 
+@php
 $locate = \Session::get('locale');
 if($locate=="vi") $locate = "";
 else $locate = "_".$locate;
@@ -32,7 +32,7 @@ else $locate = "_".$locate;
                             INFO
                             <div class="info-content">
                                 <p>
-                                    @php 
+                                    @php
                                     $ok = explode("\n", $item["description".$locate]);
                                     $ok = join("<br>", $ok);
                                     @endphp
@@ -49,7 +49,7 @@ else $locate = "_".$locate;
             <div class="box-items">
                 @foreach($post as $index => $item)
                 <div onclick="chooseImage({{ $index }})" class="item">
-                    <img src="/images/{{ $item["image"] }}">
+                    <img src="/images/{{ $item["compress_image"] }}">
                 </div>
                 @endforeach
             </div>
@@ -65,7 +65,7 @@ else $locate = "_".$locate;
                             INFO
                             <div class="info-content">
                                 <p>
-                                    @php 
+                                    @php
                                     $ok = explode("\n", $item["description".$locate]);
                                     $ok = join("<br>", $ok);
                                     @endphp
@@ -352,7 +352,7 @@ body#dark .name-collection{
     font-weight: 500;
     padding: 15px 0px;
     border-bottom: 2px solid white;
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
     display: inline-block;
 }
 .box-collection .box-content .detail-collection .detail .detail-content{
@@ -426,7 +426,7 @@ body#dark .name-collection{
     width: 50%;
     height: 100%;
     overflow: hidden;
-    overflow-y: scroll; 
+    overflow-y: scroll;
 }
 .box-collection .box-content .list-collection .box-items{
     width: 100%;

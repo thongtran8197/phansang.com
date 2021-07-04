@@ -102,6 +102,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/new-about-me', 'Admin\NewAboutMeController@index')->name('admin.new_about_me.index');
     Route::post('/new-about-me/update', 'Admin\NewAboutMeController@update')->name('admin.new_about_me.update');
     Route::put('/new-about-me/language_content/{id}', 'Admin\NewAboutMeController@language_content')->name('admin.new_about_me.language_content');
+
+
+    Route::get('/contact_image/get_contact_image', 'Admin\ContactController@get_contact_image')->name('admin.contact_image.get_contact_image');
+    Route::post('/contact_image/update_contact_image', 'Admin\ContactController@update_contact_image')->name('admin.contact_image.update_contact_image');
 });
 
 Route::group(['prefix' => ''], function () {
@@ -122,7 +126,6 @@ Route::group(['prefix' => ''], function () {
     Route::get('/test', 'Admin\HomeController@test')->name('ui.test');
     Route::get('/lien-he', 'Admin\ContactController@contact')->name('ui.contact');
     Route::get('/gioi-thieu', 'Admin\NewAboutMeController@about_me')->name('ui.about_me');
-    //Route::get('/bo-suu-tap', 'Admin\CollectionController@collection_v2')->name('ui.collection_v2');
     Route::get('/bo-suu-tap', 'Artist\CollectionController@index')->name('ui.collection_v2');
     Route::get('/bo-suu-tap/{collection_id}', 'Artist\CollectionController@index')->name('ui.collection.v3');
     Route::get('/mo-ta-bo-suu-tap-v2/{collection_id}', 'Admin\CollectionController@description_collection_v2')->name('ui.description_collection_v2');

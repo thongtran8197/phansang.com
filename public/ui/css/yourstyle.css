@@ -1186,6 +1186,7 @@ a.gallery-filter.transition2:hover {
 ._flex-container {
     padding: 20px 20px 0 20px;
     background-color: white;
+    cursor: default;
 }
 
 #dark-mode ._flex-container {
@@ -1554,6 +1555,9 @@ a.gallery-filter.transition2:hover {
 
 .home-bg {
     background: white;
+}
+.home-bg .bg {
+    cursor: default;
 }
 
 .post-item.description-ctn {

@@ -75,7 +75,7 @@
     </style>
     @yield('css')
 </head>
-@php 
+@php
 $is_dark = \Session::get('is_dark');
 @endphp
 <body @if($is_dark) id="dark" @endif>
@@ -94,7 +94,7 @@ $is_dark = \Session::get('is_dark');
                     <ul>
                         <?php $route = Route::currentRouteName() ?>
                         <li><a href="{{ route('ui.about_me') }}" class="{{ in_array($route, ['ui.about_me']) ? 'act-link' : '' }}">{{ __('labels.about_me') }}</a></li>
-                        <li><a href="{{ route('ui.collection_v2') }}" class="{{ $route=='ui.collection_v2' ? 'act-link' : '' }}">{{ __('labels.collections') }}</a></li>
+                        <li><a href="{{ route('ui.collection_v2') }}" class="{{ in_array($route, ['ui.collection_v2', 'ui.collection.v3']) ? 'act-link' : '' }}">{{ __('labels.collections') }}</a></li>
                         <li><a href="{{ route('ui.news') }}" class="{{ $route=='ui.news' ? 'act-link' : '' }}">{{ __('labels.news') }}</a></li>
                         <li><a href="{{ route('ui.studio') }}" class="{{ $route=='ui.studio' ? 'act-link' : '' }}">{{ __('labels.studio') }}</a></li>
                         <li><a href="{{ route('ui.contact') }}" class="{{  $route=='ui.contact' ? 'act-link' : '' }}">{{ __('labels.contact') }}</a></li>

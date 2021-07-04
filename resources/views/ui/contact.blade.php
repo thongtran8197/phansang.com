@@ -13,7 +13,7 @@
             <div class="content full-height">
                 <section class="section-columns ct-section-column" id="sec1">
                     <div class="section-columns-img contact-column-img">
-                        <div class="bg" style="background-image:url({{asset('images/'.($about_me['image_about'] ?? ''))}})" ></div>
+                        <div class="bg" style="background-image:url({{asset('images/'.($contact_image['image'] ?? ''))}})" ></div>
                     </div>
                     <div class="section-columns-text contact-column-text" style="overflow-y: auto;">
                         <div class="custom-inner">
