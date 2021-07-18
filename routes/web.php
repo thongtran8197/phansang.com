@@ -122,12 +122,15 @@ Route::group(['prefix' => ''], function () {
         }
         return redirect()->back();
     });
-   	Route::get('/', 'Admin\HomeController@home')->name('ui.index');
+    Route::get('/', function () {
+        return redirect()->route('ui.about_me');
+    });
+    Route::get('/trang-chu', 'Admin\HomeController@home')->name('ui.index');
     Route::get('/test', 'Admin\HomeController@test')->name('ui.test');
     Route::get('/lien-he', 'Admin\ContactController@contact')->name('ui.contact');
     Route::get('/gioi-thieu', 'Admin\NewAboutMeController@about_me')->name('ui.about_me');
     Route::get('/bo-suu-tap', 'Artist\CollectionController@index')->name('ui.collection_v2');
-    Route::get('/bo-suu-tap/{collection_id}', 'Artist\CollectionController@index')->name('ui.collection.v3');
+    Route::get('/bo-suu-tap/{collection_id}-{collection_name}', 'Artist\CollectionController@index')->name('ui.collection.v3');
     Route::get('/mo-ta-bo-suu-tap-v2/{collection_id}', 'Admin\CollectionController@description_collection_v2')->name('ui.description_collection_v2');
     Route::get('/ten-bo-suu-tap-v2/{collection_id}', 'Admin\CollectionController@name_collection_v2')->name('ui.name_collection_v2');
     Route::get('/tac-pham/{collection_id}', 'Admin\PostController@posts_by_collection')->name('ui.post');

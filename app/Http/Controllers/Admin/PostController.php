@@ -61,7 +61,6 @@ class PostController extends Controller
         $name = $request->get('name') ? $request->get('name') : "";
         $description = $request->get('description') ? $request->get('description') : "";
         $detail = $request->get('detail') ? $request->get('detail') : "";
-        $content_qr = $request->get('content_qr') ? $request->get('content_qr') : "";
         $image_name = "";
         $compress_image = "";
         if ($request->hasFile('image')) {
@@ -82,7 +81,6 @@ class PostController extends Controller
             'compress_image' => $compress_image,
             'collection_id' => $collection_id,
             'description' => $description,
-            'content_qr' => $content_qr,
             'description_en' => $this->translate_service->gg_translate('vi', 'en', $description),
             'description_fr' => $this->translate_service->gg_translate('vi', 'fr', $description),
             'detail' => $detail,
@@ -107,9 +105,7 @@ class PostController extends Controller
             $name = $request->get('name') ? $request->get('name') : "";
             $description = $request->get('description') ? $request->get('description') : "";
             $detail = $request->get('detail') ? $request->get('detail') : "";
-            $content_qr = $request->get('content_qr') ? $request->get('content_qr') : "";
             $arr_update_data = [
-                'content_qr' => $content_qr,
                 'description' => $description,
                 'description_en' => $this->translate_service->gg_translate('vi', 'en', $description),
                 'description_fr' => $this->translate_service->gg_translate('vi', 'fr', $description),
