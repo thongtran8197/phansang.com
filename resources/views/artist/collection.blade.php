@@ -23,38 +23,42 @@
             </div>
             <div class="detail-collection">
                 <div class="detail">
-                    <h2 class="hover-title">{{ $collections[$default]["name".$locate] }}</h2>
-                    <div class="detail-content">
-                        <div class="box-detail-content">
-                            {{ $collections[$default]["description".$locate] }}
+                    <div class="box-1">
+                        <h2 class="hover-title">{{ $collections[$default]["name".$locate] }}</h2>
+                        <div class="detail-content">
+                            <div class="box-detail-content">
+                                {{ $collections[$default]["description".$locate] }}
+                            </div>
                         </div>
                     </div>
-                    @foreach($post as $index => $item)
-                        <div @if($index==$postDefault) class="image active" @else class="image" @endif>
-                            <a data-magnify="pc" href="/images/{{ $item["image"] }}" class="zoom"><i class="fa fa-expand"></i></a>
-                            <img src="/images/{{ $item["image"] }}">
-                            <div class="box-info">
-                                <div class="info">
-                                    @if($locate == '_en')
-                                        DETAIL
-                                    @elseif($locate == '_fr')
-                                        DÉTAIL
-                                    @else
-                                        CHI TIẾT
-                                    @endif
-                                    <div class="info-content">
-                                        <p>
-                                            @php
-                                                $ok = explode("\n", $item["description".$locate]);
-                                                $ok = join("<br>", $ok);
-                                            @endphp
-                                            {!! $ok !!}
-                                        </p>
+                    <div class="box-2">
+                        @foreach($post as $index => $item)
+                            <div @if($index==$postDefault) class="image active" @else class="image" @endif>
+                                <a data-magnify="pc" href="/images/{{ $item["image"] }}" class="zoom"><i class="fa fa-expand"></i></a>
+                                <img src="/images/{{ $item["image"] }}">
+                                <div class="box-info">
+                                    <div class="info">
+                                        @if($locate == '_en')
+                                            DETAIL
+                                        @elseif($locate == '_fr')
+                                            DÉTAIL
+                                        @else
+                                            CHI TIẾT
+                                        @endif
+                                        <div class="info-content">
+                                            <p>
+                                                @php
+                                                    $ok = explode("\n", $item["description".$locate]);
+                                                    $ok = join("<br>", $ok);
+                                                @endphp
+                                                {!! $ok !!}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
             <div class="list-collection">
@@ -253,6 +257,22 @@
             pointer-events: auto;
         }
     </style>
+
+    <style>
+        .detail-collection .detail .box-2{
+            height: calc(100% - 60px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box-collection .box-content .detail-collection .detail .box-2 .image.active{
+            padding-top: 35px;
+            max-height: 100%;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+    </style>
+
     <style>
         ::-webkit-scrollbar {
             width: 0px;
@@ -323,9 +343,9 @@
             cursor: pointer;
             outline: none;
             border: none;
-            background: #000000c7;
-            height: 30px;
-            width: 30px;
+            background: #6d6f77;
+            height: 25px;
+            width: 25px;
             color: white;
             display: flex;
             justify-content: center;
@@ -342,8 +362,6 @@
         }
         .box-collection .box-content .detail-collection .detail{
             height: calc(100% - 45px);
-            overflow: hidden;
-            overflow-y: scroll;
             padding: 15px;
             position: relative;
             padding-bottom: 0px;
@@ -399,8 +417,8 @@
         }
         .box-collection .box-content .detail-collection .detail .image a.zoom{
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 0px;
+            right: 0px;
             margin: 0px;
         }
         .box-collection .box-content .detail-collection .detail .image a.zoom i{
@@ -448,7 +466,9 @@
         }
         .box-collection .box-content .detail-collection .detail .image .box-info .info .info-content p{
             font-size: 11px;
-            line-height: 30px;
+            line-height: 25px;
+            padding: 0px;
+            font-family: arial;
         }
         .box-collection .box-content .detail-collection .detail .image .box-info .info:hover .info-content{
             opacity: 1;
