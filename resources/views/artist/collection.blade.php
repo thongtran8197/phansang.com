@@ -4,22 +4,30 @@
 $locate = \Session::get('locale');
 
 $nameC = "";
-if($locate=="vi") $nameC = "Bộ sưu tập mới nhất";
-else if($locate=="en") $nameC = "Newest collection";
-else if($locate=="fr") $nameC = "Nouvelle collection";
-
+if($locate=="vi"){
+    $nameC  = "Bộ sưu tập mới";
+    $name   = "BỘ SƯU TẬP";
+}else if($locate=="en"){
+    $nameC = "New collection";
+    $name   = "COLLECTIONS" ;
+}else{
+    if($locate=="fr") $nameC = "Nouvelle collection";
+    $name   = "COLLECTIONS" ;
+}
+ 
 if($locate=="vi") $locate = "";
 else $locate = "_".$locate;
 @endphp
 <div class="box-collection">
     <div class="box-content">
         <div class="collections">
-            <h1>COLLECTIONS</h1>
-            <button class="mobile-collection">COLLECTIONS <i class="fa fa-long-arrow-down"></i></button>
+            <h1>{{ $name }}</h1>
+            <button class="mobile-collection">{{ $name }} <i class="fa fa-long-arrow-down"></i></button>
             <ul>
+                <li><a href="#" style="color: #FAD0C9ff; font-size:25px;">{{ $nameC }}</a></li>
                 @foreach($collections as $index => $item)
                     <?php $collection_name = strtolower(str_replace(" ", "-", $item["name_en"]));?>
-                    <li><a href="{{ route("ui.collection.v3", ["collection_id"=>$item["id"], "collection_name"=>$collection_name]) }}" @if($index==$default) class="active"  @endif>{{ $item["name".$locate] }}</a></li>
+                    <li><a @if($index==0) style="color: #FAD0C9ff;" @endif href="{{ route("ui.collection.v3", ["collection_id"=>$item["id"], "collection_name"=>$collection_name]) }}" @if($index==$default) class="active"  @endif>{{ $item["name".$locate] }}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -227,8 +235,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 @endsection
 
 @section('css')
-<link type="text/css" rel="stylesheet" href="/owl2/assets/owl.carousel.min.css">
 <style>
+h1{font-family: 'Josefin Sans', sans-serif;}
 body#dark .box-collection .box-content, body#dark .box-collection .name-collection{
     background: #0a0a0e;
 }
@@ -329,7 +337,7 @@ body#dark .name-collection{
     display: none;
 }
 .box-collection .box-content .collections{
-    background: #898C9D;
+    background: #6E6E6DFF;
     width: 20%;
     text-align: left;
     padding: 15px;
@@ -346,20 +354,13 @@ body#dark .name-collection{
     padding: 0px 15px;
 }
 .box-collection .box-content .collections ul li a{
-    font-size: 14px;
+    font-size: 18px;
     padding: 10px 0px;
     display: inline-block;
     color: white;
-    border-bottom: 2px solid #898C9D;
-}
-.box-collection .box-content .collections ul li:first-child a::before{
-    content: "{{ $nameC }}: "
-}
-.box-collection .box-content .collections ul li a.active, .box-collection .box-content .collections ul li a:hover{
-    border-bottom: 2px solid white;
 }
 .box-collection .box-content .detail-collection{
-    background: #898C9D;
+    background: #6E6E6DFF;
     width: 30%;
     text-align: left;
     margin-left: 15px;
@@ -397,7 +398,7 @@ body#dark .name-collection{
     background: none;
     margin: 0px;
     transition: 0.6s;
-    border-bottom: 1px solid #898C9D;
+    border-bottom: 1px solid #6E6E6DFF;
     font-size: 11px;
     width: auto;
 }
@@ -482,7 +483,7 @@ body#dark .name-collection{
     font-size: 11px;
     cursor: pointer;
     transition: 0.6s;
-    background-color: #898C9D;
+    background-color: #6E6E6DFF;
     font-weight: 500;
     padding-bottom: 0px;
 }
@@ -540,7 +541,7 @@ body#dark .name-collection{
     width: 100%;
     height: 100%;
     padding: 10px;
-    background: #898C9D;
+    background: #6E6E6DFF;
     border: 1px solid black;
 }
 </style>

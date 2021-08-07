@@ -15,8 +15,8 @@
                     <li class="language-list-item"><a href="{{ url('locale/vi') }}"
                                                       class="<?php echo($locate == 'vi' || is_null($locate) ? "active" : "")?>">VN</a>
                     </li>
-                    <li class="language-list-item"><a href="{{ url('locale/fr') }}"
-                        class="<?php echo($locate == 'fr' ? "active" : "")?>">FR</a></li>
+                    <!-- <li class="language-list-item"><a href="{{ url('locale/fr') }}"
+                        class="<?php echo($locate == 'fr' ? "active" : "")?>">FR</a></li> -->
                 </ul>
             </div>
             <div class="footer-social">
