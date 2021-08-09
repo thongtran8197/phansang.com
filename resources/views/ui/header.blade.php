@@ -78,6 +78,8 @@
         }
         header ul li a{
             font-family: 'Josefin Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
         }
         #wrapper, header, footer, .title-desc, .content-desc{
             font-family: 'Josefin Sans', sans-serif;

@@ -1,4 +1,17 @@
 @extends('ui.master')
+@section('css')
+<style>
+p{
+    font-size: 20px;
+}
+@media(max-width: 1199px){
+    .paragraph-box{
+        width: 75%;
+    }
+}
+</style>
+@endsection
+
 @section('content')
         <?php $is_dark = \Session::get('is_dark'); ?>
         <div id="<?php echo($is_dark ? "dark-mode" : "")?>" class="content-holder elem scale-bg2 transition3" >

@@ -34,7 +34,7 @@ else $locate = "_".$locate;
         <div class="detail-collection">
             <div class="detail">
                 <div class="box-1">
-                    <h2>{{ $collections[$default]["name".$locate] }}</h2>
+                    <h2 @if($collections[0]["id"]==$collections[$default]["id"]) style="color: #FAD0C9ff;" @endif><span>{{ $nameC }}: </span>{{ $collections[$default]["name".$locate] }}</h2>
                     <button class="hover-title">
                         @if($locate == '_en')
                             ABOUT
@@ -128,7 +128,7 @@ else $locate = "_".$locate;
             <div class="owl-carousel owl-theme box-items">
                 @foreach($post as $index => $item)
                 <div class="item">
-                    <img onclick="chooseImageMobile({{ $index }})" src="/images/{{ $item["image"] }}">
+                    <img onclick="chooseImageMobile({{ $index }})" src="/images/{{ $item["compress_image"] }}">
                 </div>
                 @endforeach
             </div>
@@ -414,9 +414,7 @@ body#dark .name-collection{
     padding: 0px;
     margin: 0px;
 }
-.box-collection .box-content .detail-collection .detail h2::before{
-   content: "{{ $nameC }}: ";
-   cursor: pointer;
+.box-collection .box-content .detail-collection .detail h2 span{
    display: none;
 }
 .box-collection .box-content .detail-collection .detail .detail-content{
@@ -657,11 +655,9 @@ body#dark .name-collection{
     .box-collection .box-content .detail-collection .detail h2{
         padding-top: 15px;
     }
-    .box-collection .box-content .detail-collection .detail h2::before{
-        margin-right: 5px;
-        content: "{{ $nameC }}: ";
+    .box-collection .box-content .detail-collection .detail h2 span{
         @if($collections[0]["id"]==$collections[$default]["id"])
-        display: inline-block;
+        display: block;
         @endif
     }
     .box-collection .box-content .detail-collection .detail .image{
