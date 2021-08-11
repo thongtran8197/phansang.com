@@ -9,6 +9,10 @@
     <meta name="description" content=""/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,400;1,100;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/owl2/assets/owl.carousel.min.css">
     <link type="text/css" rel="stylesheet" href="{{ asset('ui/css/reset.css')."?v=".time() }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('ui/css/plugins.css')."?v=".time() }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('ui/css/style.css')."?v=".time() }}">
@@ -72,6 +76,14 @@
                 background: #0a0a0e;
             }
         }
+        header ul li a{
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        #wrapper, header, footer, .title-desc, .content-desc{
+            font-family: 'Josefin Sans', sans-serif;
+        }
     </style>
     @yield('css')
 </head>
@@ -104,6 +116,6 @@ $is_dark = \Session::get('is_dark');
             </div>
         </div>
     </header>
-    <a id="<?php echo($is_dark ? "dark-title" : "")?>" class="fixed-title toggle-mode cursor-pt" href="{{ url('switch-mode') }}">
+    <!-- <a id="<?php echo($is_dark ? "dark-title" : "")?>" class="fixed-title toggle-mode cursor-pt" href="{{ url('switch-mode') }}">
         <span><?php echo($is_dark ? "Dark Mode" : "Light Mode");?></span>
-    </a>
+    </a> -->
