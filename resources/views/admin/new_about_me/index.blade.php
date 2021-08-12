@@ -25,8 +25,16 @@
                     <textarea class="form-control" rows="5" placeholder="Mô tả" name="title" required> {{ $new_about_me['title'] ?? '' }}</textarea>
                 </div>
                 <div class="form-group">
+                    <label>Tiêu đề Tiếng Anh</label>
+                    <textarea class="form-control" rows="5" placeholder="Mô tả" name="title_en" required> {{ $new_about_me['title_en'] ?? '' }}</textarea>
+                </div>
+                <div class="form-group">
                     <label>Nội dung</label>
                     <textarea class="form-control" rows="5" placeholder="Mô tả" name="content" required> {{ $new_about_me['content'] ?? '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Nội dung Tiếng Anh</label>
+                    <textarea class="form-control" rows="5" placeholder="Mô tả" name="content_en" required> {{ $new_about_me['content_en'] ?? '' }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Upload Ảnh Giới Thiệu 1</label>
@@ -63,35 +71,5 @@
                 <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </form>
-            @if ($new_about_me['id'] ?? 0)
-                <div class="card-header">
-                    <h3 class="card-title">Thông Tin Đa Ngôn Ngữ</h3>
-                </div>
-                <form role="form" method="POST" action="{{route('admin.new_about_me.language_content', $new_about_me['id'] ?? 0)}}">
-                    @method('PUT')
-                    @csrf
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label>Tiêu đề (En)</label>
-                            <textarea class="form-control" rows="5" placeholder="Tiêu đề" name="title_en"> {{ $new_about_me['title_en'] ?? '' }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Tiêu đề (Fr)</label>
-                            <textarea class="form-control" rows="5" placeholder="Tiêu đề" name="title_fr"> {{ $new_about_me['title_fr'] ?? '' }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Nội Dung (En)</label>
-                            <textarea class="form-control" rows="5" placeholder="Nội Dung" name="content_en"> {{ $new_about_me['content_en'] ?? '' }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Nội Dung (Fr)</label>
-                            <textarea class="form-control" rows="5" placeholder="Nội Dung" name="content_fr"> {{ $new_about_me['content_fr'] ?? '' }}</textarea>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Lưu</button>
-                    </div>
-                </form>
-            @endif
     </div>
 @endsection

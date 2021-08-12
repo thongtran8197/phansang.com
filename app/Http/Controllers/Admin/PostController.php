@@ -58,9 +58,6 @@ class PostController extends Controller
             'image' => 'required|mimes:jpeg,png,jpg|max:8096',
         ]);
         $collection_id = (int)$request->get('collection_id');
-        $name = $request->get('name') ? $request->get('name') : "";
-        $description = $request->get('description') ? $request->get('description') : "";
-        $detail = $request->get('detail') ? $request->get('detail') : "";
         $image_name = "";
         $compress_image = "";
         if ($request->hasFile('image')) {
@@ -80,15 +77,15 @@ class PostController extends Controller
             'image' => $image_name,
             'compress_image' => $compress_image,
             'collection_id' => $collection_id,
-            'description' => $description,
-            'description_en' => $this->translate_service->gg_translate('vi', 'en', $description),
-            'description_fr' => $this->translate_service->gg_translate('vi', 'fr', $description),
-            'detail' => $detail,
-            'detail_en' => $this->translate_service->gg_translate('vi', 'en', $detail),
-            'detail_fr' => $this->translate_service->gg_translate('vi', 'fr', $detail),
-            'name' => $name,
-            'name_en' => $this->translate_service->gg_translate('vi', 'en', $name),
-            'name_fr' => $this->translate_service->gg_translate('vi', 'fr', $name),
+            'description' => $request->get('description') ? $request->get('description') : "",
+            'description_en' => $request->get('description_en') ? $request->get('description_en') : "",
+            'description_fr' => "",
+            'detail' => $request->get('detail') ? $request->get('detail') : "",
+            'detail_en' => $request->get('detail_en') ? $request->get('detail_en') : "",
+            'detail_fr' => "",
+            'name' => $request->get('name') ? $request->get('name') : "",
+            'name_en' => $request->get('name_en') ? $request->get('name_en') : "",
+            'name_fr' => "",
         ]);
         return redirect()->back()->with('success', 'Thêm Thành Công.');
     }
@@ -102,19 +99,16 @@ class PostController extends Controller
         $post = Post::find($id);
 
         if ($post) {
-            $name = $request->get('name') ? $request->get('name') : "";
-            $description = $request->get('description') ? $request->get('description') : "";
-            $detail = $request->get('detail') ? $request->get('detail') : "";
             $arr_update_data = [
-                'description' => $description,
-                'description_en' => $this->translate_service->gg_translate('vi', 'en', $description),
-                'description_fr' => $this->translate_service->gg_translate('vi', 'fr', $description),
-                'detail' => $detail,
-                'detail_en' => $this->translate_service->gg_translate('vi', 'en', $detail),
-                'detail_fr' => $this->translate_service->gg_translate('vi', 'fr', $detail),
-                'name' => $name,
-                'name_en' => $this->translate_service->gg_translate('vi', 'en', $name),
-                'name_fr' => $this->translate_service->gg_translate('vi', 'fr', $name),
+                'description' => $request->get('description') ? $request->get('description') : "",
+                'description_en' => $request->get('description_en') ? $request->get('description_en') : "",
+                'description_fr' => "",
+                'detail' => $request->get('detail') ? $request->get('detail') : "",
+                'detail_en' => $request->get('detail_en') ? $request->get('detail_en') : "",
+                'detail_fr' => "",
+                'name' => $request->get('name') ? $request->get('name') : "",
+                'name_en' => $request->get('name_en') ? $request->get('name_en') : "",
+                'name_fr' => "",
             ];
             if ($request->hasFile('image')) {
                 $request->validate([
@@ -172,17 +166,6 @@ class PostController extends Controller
         return view('ui.components.image_collection_v2')->with([
             'posts' => $posts,
         ]);
-    }
-
-    public function language_content(Request $request, $post_id)
-    {
-        Post::where('id', $post_id)
-            ->update([
-                'description_en' => $request->get('description_en'),
-                'description_fr' => $request->get('description_fr'),
-            ]);
-
-        return redirect()->back()->with('success', 'Sửa Thành Công.');
     }
 
     public function get_qr(Request $request, $post_id)

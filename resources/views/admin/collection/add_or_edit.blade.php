@@ -29,11 +29,19 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Tên</label>
-                    <input type="text" class="form-control" placeholder="Tên" name="name" value="{{ $collection['name'] ?? '' }}" required>
+                    <input type="text" class="form-control" placeholder="" name="name" value="{{ $collection['name'] ?? '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label>Tên Tiếng Anh</label>
+                    <input type="text" class="form-control" placeholder="" name="name_en" value="{{ $collection['name_en'] ?? '' }}" required>
                 </div>
                 <div class="form-group">
                     <label>Mô Tả</label>
                     <textarea class="form-control" row="5" placeholder="Mô tả" name="description"> {{ $collection['description'] ?? '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Mô Tả Tiếng Anh</label>
+                    <textarea class="form-control" row="5" placeholder="Mô tả" name="description_en"> {{ $collection['description_en'] ?? '' }}</textarea>
                 </div>
             </div>
             <div class="card-footer">
@@ -51,36 +59,6 @@
                     @endforeach
                 </ul>
             </div><br/>
-        @endif
-        @if ($collection['id'] ?? 0)
-        <div class="card-header">
-            <h3 class="card-title">Thông Tin Đa Ngôn Ngữ</h3>
-        </div>
-        <form role="form" method="POST" action="{{route('admin.collection.language_content', $collection['id'] ?? 0)}}">
-            @method('PUT')
-            @csrf
-            <div class="card-body">
-                <div class="form-group">
-                    <label>Tên (En)</label>
-                    <input type="text" class="form-control" placeholder="Tên" name="name_en" value="{{ $collection['name_en'] ?? '' }}" required>
-                </div>
-                <div class="form-group">
-                    <label>Tên (Fr)</label>
-                    <input type="text" class="form-control" placeholder="Tên" name="name_fr" value="{{ $collection['name_fr'] ?? '' }}" required>
-                </div>
-                <div class="form-group">
-                    <label>Mô Tả (En)</label>
-                    <textarea class="form-control" rows="5" placeholder="Mô tả" name="description_en">{{ $collection['description_en'] ?? '' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label>Mô Tả (Fr)</label>
-                    <textarea class="form-control" rows="5" placeholder="Mô tả" name="description_fr">{{ $collection['description_fr'] ?? '' }}</textarea>
-                </div>
-            </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
-        </form>
         @endif
     </div>
     @endif

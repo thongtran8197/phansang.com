@@ -29,11 +29,19 @@
         <div class="card-body">
             <div class="form-group">
                 <label>Tiêu đề</label>
-                <input type="text" class="form-control" placeholder="Tiêu đề" name="title" value="{{ $new['title'] ?? '' }}" required>
+                <input type="text" class="form-control" placeholder="" name="title" value="{{ $new['title'] ?? '' }}" required>
+            </div>
+            <div class="form-group">
+                <label>Tiêu đề Tiếng Anh</label>
+                <input type="text" class="form-control" placeholder="" name="title_en" value="{{ $new['title_en'] ?? '' }}" required>
             </div>
             <div class="form-group">
                 <label>Mô Tả</label>
-                <textarea class="form-control" rows="5" placeholder="Mô tả" name="description"> {{ $new['description'] ?? '' }}</textarea>
+                <textarea class="form-control" rows="5" placeholder="" name="description"> {{ $new['description'] ?? '' }}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Mô Tả Tiếng Anh</label>
+                <textarea class="form-control" rows="5" placeholder="" name="description_en"> {{ $new['description_en'] ?? '' }}</textarea>
             </div>
             <div class="form-group">
                 <label>Link</label>
@@ -59,35 +67,5 @@
             <button type="submit" class="btn btn-primary">Lưu</button>
         </div>
     </form>
-    @if($new['id'] ?? 0)
-    <div class="card-header">
-        <h3 class="card-title">Thông Tin Đa Ngôn Ngữ</h3>
-    </div>
-    <form role="form" method="POST" action="{{route('admin.new.language_content', $new['id'] ?? 0)}}">
-        @method('PUT')
-        @csrf
-        <div class="card-body">
-            <div class="form-group">
-                <label>Tiêu đề (En)</label>
-                <input type="text" class="form-control" placeholder="Tên" name="title_en" value="{{ $new['title_en'] ?? '' }}" required>
-            </div>
-            <div class="form-group">
-                <label>Tiêu đề (Fr)</label>
-                <input type="text" class="form-control" placeholder="Tên" name="title_fr" value="{{ $new['title_fr'] ?? '' }}" required>
-            </div>
-            <div class="form-group">
-                <label>Mô Tả (En)</label>
-                <textarea class="form-control" rows="5" placeholder="Mô tả" name="description_en"> {{ $new['description_en'] ?? '' }}</textarea>
-            </div>
-            <div class="form-group">
-                <label>Mô Tả (Fr)</label>
-                <textarea class="form-control" rows="5" placeholder="Mô tả" name="description_fr"> {{ $new['description_fr'] ?? '' }}</textarea>
-            </div>
-        </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Lưu</button>
-        </div>
-    </form>
-    @endif
 </div>
 @endsection
