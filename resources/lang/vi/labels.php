@@ -14,7 +14,7 @@ return [
     'qdnt' => "Quan điểm nghệ thuật",
     'description' => 'Mô tả',
     'address' => 'Địa chỉ',
-    'write_us' => 'LIÊN LẠC',
+    'write_us' => 'LIÊN HỆ',
     'message' => 'Tin Nhắn',
     'submit' => 'Gửi',
     'phone' => 'Số điện thoại',

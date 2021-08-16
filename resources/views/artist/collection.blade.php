@@ -586,7 +586,7 @@ body#dark .name-collection{
         width: 100%;
         margin: 0px;
         background: none;
-        position: fixed;
+        position: absolute;
         top: 70px;
         right: 0px;
         z-index: 10;
