@@ -34,19 +34,14 @@ class NewAboutMeController extends Controller
                 'title' => 'required',
                 'content' => 'required',
             ]);
-            $title = $request->get('title') ? $request->get('title') : "";
-            $title_en = $this->translate_service->gg_translate('vi', 'en', $title);
-            $title_fr = $this->translate_service->gg_translate('vi', 'fr', $title);
-            $content = $request->get('content') ? $request->get('content') : "";
-            $content_en = $this->translate_service->gg_translate('vi', 'en', $content);
-            $content_fr = $this->translate_service->gg_translate('vi', 'fr', $content);
+
             $arr_data_update = [
-                'title' => $title,
-                'title_en' => $title_en,
-                'title_fr' => $title_fr,
-                'content' => $content,
-                'content_en' => $content_en,
-                'content_fr' => $content_fr,
+                'title' => $request->get('title') ? $request->get('title') : "",
+                'title_en' => $request->get('title_en') ? $request->get('title_en') : "",
+                'title_fr' => "",
+                'content' => $request->get('title_en') ? $request->get('content') : "",
+                'content_en' => $request->get('title_en') ? $request->get('content_en') : "",
+                'content_fr' => "",
             ];
             if ($request->hasFile('image')) {
                 $arr_image_name = explode('.', preg_replace("/\s+/", "-", $request->file('image')->getClientOriginalName()));
@@ -73,11 +68,11 @@ class NewAboutMeController extends Controller
                 'logo_image' => 'required|mimes:jpeg,png,jpg|max:8192',
             ]);
             $title = $request->get('title') ? $request->get('title') : "";
-            $title_en = $this->translate_service->gg_translate('vi', 'en', $title);
-            $title_fr = $this->translate_service->gg_translate('vi', 'fr', $title);
+            $title_en = $request->get('title_en') ? $request->get('title_en') : "";
+            $title_fr = "";
             $content = $request->get('content') ? $request->get('content') : "";
-            $content_en = $this->translate_service->gg_translate('vi', 'en', $content);
-            $content_fr = $this->translate_service->gg_translate('vi', 'fr', $content);
+            $content_en = $request->get('content') ? $request->get('content_en') : "";
+            $content_fr = "";
             $image_name = "";
             $logo_image_name = "";
             if ($request->hasFile('image')) {
@@ -102,19 +97,6 @@ class NewAboutMeController extends Controller
             ]);
         }
         return redirect()->back()->with("message", "Thành Công");
-    }
-
-    public function language_content(Request $request, $id)
-    {
-        NewAboutMe::where('id', $id)
-            ->update([
-                'title_en' => $request->get('title_en'),
-                'title_fr' => $request->get('title_fr'),
-                'content_en' => $request->get('content_en'),
-                'content_fr' => $request->get('content_fr'),
-            ]);
-
-        return redirect()->back()->with('success', 'Sửa Thành Công.');
     }
 
     public function about_me(Request $request)

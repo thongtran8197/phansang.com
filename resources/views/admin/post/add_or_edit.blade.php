@@ -32,15 +32,27 @@
                 </div>
                 <div class="form-group">
                     <label>Tên</label>
-                    <input type="text" class="form-control" placeholder="Tên" name="name" value="{{ $post['name'] ?? '' }}" required>
+                    <input type="text" class="form-control" placeholder="" name="name" value="{{ $post['name'] ?? '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label>Tên Tiếng Anh</label>
+                    <input type="text" class="form-control" placeholder="" name="name_en" value="{{ $post['name_en'] ?? '' }}" required>
                 </div>
                 <div class="form-group">
                     <label>Mô Tả</label>
-                    <textarea class="form-control" rows="5" placeholder="Mô tả" name="description"> {{ $post['description'] ?? '' }}</textarea>
+                    <textarea class="form-control" rows="5" placeholder="" name="description"> {{ $post['description'] ?? '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Mô Tả Tiếng Anh</label>
+                    <textarea class="form-control" rows="5" placeholder="" name="description_en"> {{ $post['description_en'] ?? '' }}</textarea>
                 </div>
                 <div class="form-group">
                     <label>Chi tiết</label>
-                    <textarea class="form-control" rows="5" placeholder="Chi Tiết" name="detail"> {{ $post['detail'] ?? '' }}</textarea>
+                    <textarea class="form-control" rows="5" placeholder="" name="detail"> {{ $post['detail'] ?? '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Chi tiết Tiếng Anh</label>
+                    <textarea class="form-control" rows="5" placeholder="" name="detail_en"> {{ $post['detail_en'] ?? '' }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Upload Ảnh</label>
@@ -62,43 +74,5 @@
                 <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </form>
-        @if ($post['id'] ?? 0)
-        <div class="card-header">
-            <h3 class="card-title">Thông Tin Đa Ngôn Ngữ</h3>
-        </div>
-        <form role="form" method="POST" action="{{route('admin.post.language_content', $post['id'] ?? 0)}}">
-            @method('PUT')
-            @csrf
-            <div class="card-body">
-                <div class="form-group">
-                    <label>Tên (En)</label>
-                    <input type="text" class="form-control" placeholder="Tên" name="name_en" value="{{ $post['name_en'] ?? '' }}" required>
-                </div>
-                <div class="form-group">
-                    <label>Tên (Fr)</label>
-                    <input type="text" class="form-control" placeholder="Tên" name="name_fr" value="{{ $post['name_fr'] ?? '' }}" required>
-                </div>
-                <div class="form-group">
-                    <label>Mô Tả (En)</label>
-                    <textarea class="form-control" rows="5" placeholder="Mô tả" name="description_en"> {{ $post['description_en'] ?? '' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label>Mô Tả (Fr)</label>
-                    <textarea class="form-control" rows="5" placeholder="Mô tả" name="description_fr"> {{ $post['description_fr'] ?? '' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label>Chi Tiết (En)</label>
-                    <textarea class="form-control" rows="5" placeholder="Chi Tiết" name="detail_en"> {{ $post['detail_en'] ?? '' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label>Chi Tiết (Fr)</label>
-                    <textarea class="form-control" rows="5" placeholder="Chi Tiết" name="detail_fr"> {{ $post['detail_fr'] ?? '' }}</textarea>
-                </div>
-            </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
-        </form>
-        @endif
     </div>
 @endsection

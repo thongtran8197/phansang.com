@@ -53,11 +53,11 @@ class NewsController extends Controller
             'link' => 'required',
         ]);
         $title = $request->get('title');
-        $title_en = $this->translate_service->gg_translate('vi', 'en', $title);
-        $title_fr = $this->translate_service->gg_translate('vi', 'fr', $title);
+        $title_en = $request->get('title_en');
+        $title_fr = "";
         $description = $request->get('description') ? $request->get('description') : "";
-        $description_en = $this->translate_service->gg_translate('vi', 'en', $description);
-        $description_fr = $this->translate_service->gg_translate('vi', 'fr', $description);
+        $description_en = $request->get('description_en') ? $request->get('description_en') : "";
+        $description_fr = "";
         $image_name = "";
         if ($request->hasFile('image')) {
             $arr_image_name = explode('.', preg_replace("/\s+/", "-", $request->file('image')->getClientOriginalName()));
@@ -88,15 +88,13 @@ class NewsController extends Controller
         $new = News::find($id);
 
         if ($new) {
-            $title = $request->get('title');
-            $description = $request->get('description') ? $request->get('description') : "";
             $arr_update_data = [
-                'title' => $title,
-                'title_en' => $this->translate_service->gg_translate('vi', 'en', $title),
-                'title_fr' => $this->translate_service->gg_translate('vi', 'en', $title),
-                'description' => $description,
-                'description_en' => $this->translate_service->gg_translate('vi', 'en', $description),
-                'description_fr' => $this->translate_service->gg_translate('vi', 'fr', $description),
+                'title' => $request->get('title'),
+                'title_en' => $request->get('title_en'),
+                'title_fr' => "",
+                'description' => $request->get('description') ? $request->get('description') : "",
+                'description_en' => $request->get('description_en') ? $request->get('description_en') : "",
+                'description_fr' => "",
             ];
             if ($request->hasFile('image')) {
                 $request->validate([

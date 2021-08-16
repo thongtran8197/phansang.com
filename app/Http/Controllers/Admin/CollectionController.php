@@ -59,11 +59,11 @@ class CollectionController extends Controller
 
         Collection::create([
             'name' => $request->get('name'),
-            'name_en' => $this->translate_service->gg_translate('vi', 'en', $name),
-            'name_fr' => $this->translate_service->gg_translate('vi', 'fr', $name),
+            'name_en' => $request->get('name_en'),
+            'name_fr' => "",
             'description' => $description,
-            'description_en' => $this->translate_service->gg_translate('vi', 'en', $description),
-            'description_fr' => $this->translate_service->gg_translate('vi', 'fr', $description),
+            'description_en' => $request->get('description_en'),
+            'description_fr' => "",
         ]);
         return redirect()->back()->with('success', 'Thêm Thành Công.');
     }
@@ -76,16 +76,13 @@ class CollectionController extends Controller
         $collection = Collection::find($id);
 
         if ($collection) {
-            $name = $request->get('name');
-            $description = $request->get('description') ? $request->get('description') : "";
-
             Collection::where('id', $id)->update([
                 'name' => $request->get('name'),
-                'name_en' => $this->translate_service->gg_translate('vi', 'en', $name),
-                'name_fr' => $this->translate_service->gg_translate('vi', 'fr', $name),
-                'description' => $description,
-                'description_en' => $this->translate_service->gg_translate('vi', 'en', $description),
-                'description_fr' => $this->translate_service->gg_translate('vi', 'fr', $description),
+                'name_en' => $request->get('name_en'),
+                'name_fr' => "",
+                'description' => $request->get('description') ? $request->get('description') : "",
+                'description_en' => $request->get('description_en') ? $request->get('description_en') : "",
+                'description_fr' => "",
             ]);
             return redirect()->back()->with('success', 'Sửa Thành Công.');
         }
@@ -145,23 +142,6 @@ class CollectionController extends Controller
 
         $collections = $this->list_collections_paginate();
         return redirect()->route('admin.collection.index', ['collections' => $collections]);
-    }
-
-    public function language_content(Request $request, $collection_id)
-    {
-        $request->validate([
-            'name_en' => 'required',
-            'name_fr' => 'required',
-        ]);
-        Collection::where('id', $collection_id)
-            ->update([
-                'name_en' => $request->get('name_en'),
-                'name_fr' => $request->get('name_fr'),
-                'description_en' => $request->get('description_en'),
-                'description_fr' => $request->get('description_fr'),
-            ]);
-
-        return redirect()->back()->with('success', 'Sửa Thành Công.');
     }
 
     public function get_qr(Request $request, $collection_id)
