@@ -101,13 +101,15 @@ else $locate = "_".$locate;
                     <img src="/images/{{ $item["image"] }}">
                     <div class="box-info">
                         <div class="info">
-                            @if($locate == '_en')
-                                DETAIL
-                            @elseif($locate == '_fr')
-                                DÉTAIL
-                            @else
-                                CHI TIẾT
-                            @endif
+                            <span onclick="toggleDetail({{ $index }})">
+                                @if($locate == '_en')
+                                    DETAIL
+                                @elseif($locate == '_fr')
+                                    DÉTAIL
+                                @else
+                                    CHI TIẾT
+                                @endif
+                            </span>
                             <div class="info-content">
                                 <p>
                                     @php 
@@ -116,6 +118,7 @@ else $locate = "_".$locate;
                                     @endphp
                                     {!! $ok !!}
                                 </p>
+                                <a onclick="toggleDetail({{ $index }})" href="javascript:void(0)"><i class="fa fa-close"></i></a>
                             </div>
                         </div>
                     </div>
@@ -140,6 +143,10 @@ else $locate = "_".$locate;
 @section('js')
 <script src="/owl2/owl.carousel.min.js"></script>
 <script>
+function toggleDetail(index){
+    var detailMobile = document.querySelectorAll(".list-collection-mobile .info");
+    detailMobile[index].classList.toggle("active");
+}
 document.addEventListener("DOMContentLoaded", ()=>{
     var description = document.querySelector(".detail-collection .detail .detail-content");
     description.onmouseover = ()=>description.classList.toggle("active");
@@ -715,11 +722,11 @@ body#dark .name-collection{
         color: white;
         font-size: 14px;
     }
+    .box-collection .box-content .list-collection-mobile .box-active .item.active .box-info .info.active .info-content{
+        display: block;
+    }
     .box-collection .box-content .list-collection-mobile .box-active .item.active .box-info .info .info-content{
         display: none;
-    }
-    .box-collection .box-content .list-collection-mobile .box-active .item.active .box-info .info:hover .info-content{
-        display: block;
         position: absolute;
         bottom: 20px;
         left: 0px;
@@ -727,9 +734,15 @@ body#dark .name-collection{
         background: #000000c7;
         padding: 15px;
     }
-    .box-collection .box-content .list-collection-mobile .box-active .item.active .box-info .info:hover .info-content p{
+    .box-collection .box-content .list-collection-mobile .box-active .item.active .box-info .info .info-content p{
         font-size: 11px;
         line-height: 30px;
+    }
+    .box-collection .box-content .list-collection-mobile .box-active .item.active .box-info .info .info-content a{
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: black;
     }
     .box-collection .box-content .list-collection-mobile .box-active img{
         width: 100%;

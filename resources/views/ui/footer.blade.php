@@ -1,5 +1,43 @@
 <div class="share-container  isShare" data-share="['facebook','pinterest','googleplus','twitter','linkedin']"></div>
 </div>
+<style>
+    .language-container ul li a{
+        font-weight: 600;
+        font-size: 14px;
+    }
+    footer .utilities-container a i{
+       font-size: 16px;
+    }
+    footer .utilities-container .footer-social ul a i{
+        font-size: 16px;
+    }
+    @media(max-width: 1036px){
+        footer .utilities-container{
+            display: flex;
+        }
+        footer .utilities-container a{
+            min-width: 33.33%;
+        }
+        footer .utilities-container a i{
+            float: left;
+        }
+        footer .utilities-container .language-container{
+            min-width: 33.33%;
+        }
+        footer .utilities-container .footer-social{
+            min-width: 33.33%;
+        }
+        footer .utilities-container .footer-social ul{
+            float: right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        footer .utilities-container .footer-social ul a{
+            display: flex;
+        }
+    }
+</style>
 <div id="<?php echo($is_dark ? "dark-mode" : "")?>" class="left-decor"></div>
 <div id="<?php echo($is_dark ? "dark-mode" : "")?>" class="right-decor"></div>
 <footer id="<?php echo($is_dark ? "dark-mode" : "")?>">

@@ -1,4 +1,17 @@
 @extends('ui.master')
+@section('css')
+<style>
+    #sec1 .project-details li i{
+        color: white;
+    }
+    ul.project-details li i{
+        font-size: 20px;
+    }
+    ul.project-details li div h5{
+        font-size: 18px;
+    }
+</style>
+@endsection
 @section('content')
     <?php $is_dark = \Session::get('is_dark'); ?>
     <?php $locate = \Session::get('locale');?>
@@ -28,16 +41,18 @@
                                 <h2 style="color:white;">{{ __('labels.write_us') }}</h2>
                                 <div class="separator" style="margin: 10px 0;"></div>
                                 <div id="contact-form">
-                                    <form class="contact-form-cnt" method="post" action="{{route('contact.create')}}">
-                                        @csrf
-                                        <label for="name">{{ __('labels.name') }}</label>
-                                        <input name="name" type="text" id="name"  class="inputForm2" onClick="this.select()" style="font-family: 'Raleway';">
-                                        <label for="email">Email</label>
-                                        <input name="email" type="text" id="email" onClick="this.select()" style="font-family: 'Raleway';">
-                                        <label for="comments">{{ __('labels.message') }}</label>
-                                        <textarea name="message" id="comments" onClick="this.select()" style="font-family: 'Raleway'; margin-bottom: 0;"></textarea>
-                                        <input type="submit" class="send_message transition" id="submit" value="{{ __('labels.submit') }}" style="margin: 15px 0;"/>
-                                    </form>
+                                    <a href="mailto:{{$info->gmail ?? ""}}" style="cursor: pointer;">
+                                        <form class="contact-form-cnt" action="javascript:void(0)">
+                                            @csrf
+                                            <label style="color:white;" for="name">{{ __('labels.name') }}</label>
+                                            <input disabled name="name" type="text" id="name"  class="inputForm2" onClick="this.select()" style="font-family: 'Raleway';">
+                                            <label style="color:white;" for="email">Email</label>
+                                            <input disabled name="email" type="text" id="email" onClick="this.select()" style="font-family: 'Raleway';">
+                                            <label style="color:white;" for="comments">{{ __('labels.message') }}</label>
+                                            <textarea disabled name="message" id="comments" onClick="this.select()" style="font-family: 'Raleway'; margin-bottom: 0;"></textarea>
+                                            <input type="submit" class="send_message transition" id="submit" value="{{ __('labels.submit') }}" style="margin: 15px 0;"/>
+                                        </form>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -82,11 +97,4 @@
             });
         }
     </script>
-@endsection
-@section('css')
-    <style>
-        #sec1 .project-details li i{
-            color: white;
-        }
-    </style>
 @endsection
