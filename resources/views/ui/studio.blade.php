@@ -8,7 +8,7 @@
                 <div class="hAvatar">
                     <img class="hAvatar-img" src="{{ asset('images/'. ($studio_info['image'] ?? '')) }}">
                     <div class="hAvatar-desc">
-                        <h3 class="title-desc">Phan Sang's Studio</h3>
+                        <h3 class="title-desc">My Studio</h3>
                         @if($locate == 'en')
                             <p class="content-desc">{!! nl2br(e($studio_info['description_en'] ?? ''))!!}</p>
                         @elseif($locate == 'fr')

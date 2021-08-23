@@ -9,6 +9,7 @@ use App\Models\ContactImage;
 use App\Models\Information;
 use App\Models\SliderImage;
 use Illuminate\Http\Request;
+use Mail;
 
 class ContactController extends Controller
 {
@@ -23,7 +24,7 @@ class ContactController extends Controller
             'contacts' => $contacts
         ]);
     }
-
+    // send mail
     public function create(Request $request){
         $request->validate([
             'name' => 'required',
@@ -36,6 +37,17 @@ class ContactController extends Controller
             'message' => $request->get('message'),
             'email' => $request->get('email'),
         ]);
+        // $data=[
+        //     'email'=> $request->get('email'),
+        //     'tieude'=>'phansang.com',
+        //     'noidung'=> $request->get('message'),
+        //     'name'=> $request->get('email'),
+        // ];
+        // Mail::send('ui.contact_mail',$data,function($msg) use ($data){
+        //     $msg->from('theanh.a1k12@gmail.com','phansang.com');
+        //     $msg->to($data['email']);
+        //     $msg->subject($data['tieude']);
+        // });
         return redirect()->back()->with('success','Thêm Thành Công.');
     }
 

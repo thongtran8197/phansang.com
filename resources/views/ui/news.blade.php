@@ -1,4 +1,13 @@
 @extends('ui.master')
+
+@section('css')
+<style>
+p{
+    font-size: 20px !important;
+}
+</style>
+@endsection
+
 @section('content')
     <?php $is_dark = \Session::get('is_dark'); ?>
     <?php $locate = \Session::get('locale');?>
