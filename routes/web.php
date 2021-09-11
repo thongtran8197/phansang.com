@@ -131,6 +131,7 @@ Route::group(['prefix' => ''], function () {
     Route::get('/gioi-thieu', 'Admin\NewAboutMeController@about_me')->name('ui.about_me');
     Route::get('/bo-suu-tap', 'Artist\CollectionController@index')->name('ui.collection_v2');
     Route::get('/bo-suu-tap/{collection_id}-{collection_name}', 'Artist\CollectionController@index')->name('ui.collection.v3');
+    Route::get('/image/{name}', 'Artist\CollectionController@image')->name('image');
     Route::get('/mo-ta-bo-suu-tap-v2/{collection_id}', 'Admin\CollectionController@description_collection_v2')->name('ui.description_collection_v2');
     Route::get('/ten-bo-suu-tap-v2/{collection_id}', 'Admin\CollectionController@name_collection_v2')->name('ui.name_collection_v2');
     Route::get('/tac-pham/{collection_id}', 'Admin\PostController@posts_by_collection')->name('ui.post');

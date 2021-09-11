@@ -57,28 +57,39 @@ else $locate = "_".$locate;
                 <div class="box-2">
                     @foreach($post as $index => $item)
                     <div @if($index==$postDefault) class="image active" @else class="image" @endif>
-                        <a data-magnify="pc" href="/images/{{ $item["image"] }}" class="zoom"><i class="fa fa-expand"></i></a>
-                        <img src="/images/{{ $item["image"] }}">
-                        <div class="box-info">
-                            <div class="info">
-                                @if($locate == '_en')
-                                    DETAIL
-                                @elseif($locate == '_fr')
-                                    DÉTAIL
-                                @else
-                                    CHI TIẾT
-                                @endif
-                                <div class="info-content">
-                                    <p>
-                                        @php 
-                                        $ok = explode("\n", $item["description".$locate]);
-                                        $ok = join("<br>", $ok);
-                                        @endphp
-                                        {!! $ok !!}
-                                    </p>
-                                </div>
+                        <div class="box-image">
+                            <div class="box-image-show">
+                                <a data-magnify="pc" href="/images/{{ $item["image"] }}" class="zoom"><i class="fa fa-expand"></i></a>
+                                <img src="/images/{{ $item["image"] }}">
                             </div>
                         </div>
+                        <div class="box-info">
+                                <div class="info">
+                                    @if($locate == '_en')
+                                        DETAIL
+                                    @elseif($locate == '_fr')
+                                        DÉTAIL
+                                    @else
+                                        CHI TIẾT
+                                    @endif
+                                    <div class="info-content">
+                                        <p>
+                                            @php 
+                                            $ok = explode("\n", $item["description".$locate]);
+                                            $ok = join("<br>", $ok);
+                                            @endphp
+                                            {!! $ok !!}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <a href="mailto:admin@iamsang.net?subject=#{{ $item["id"] }} image - {{ $item["name".$locate] }}&body={{ route("image", ["name"=>$item["id"]]) }}" class="contact">
+                            @if($locate == '_en')
+                                INQUIRY
+                            @else
+                                LIÊN HỆ
+                            @endif
+                        </a>
                     </div>
                     @endforeach
                 </div>
@@ -97,7 +108,7 @@ else $locate = "_".$locate;
             <div class="box-active">
                 @foreach($post as $index => $item)
                 <div  @if($index==$postDefault) class="item active" @else class="item" @endif>
-                    <a data-magnify="mobile" href="/images/{{ $item["image"] }}" class="zoom"><i class="fa fa-expand"></i></a>
+                    <a href="/image/{{ $item["id"] }}" class="zoom"><i class="fa fa-expand"></i></a>
                     <img src="/images/{{ $item["image"] }}">
                     <div class="box-info">
                         <div class="info">
@@ -122,6 +133,13 @@ else $locate = "_".$locate;
                             </div>
                         </div>
                     </div>
+                    <a href="mailto:admin@iamsang.net?subject=#{{ $item["id"] }} image - {{ $item["name".$locate] }}&body={{ route("image", ["name"=>$item["id"]]) }}" class="contact">
+                    @if($locate == '_en')
+                        INQUIRY
+                    @else
+                        LIÊN HỆ
+                    @endif
+                    </a>
                 </div>
                 @endforeach
             </div>
@@ -300,16 +318,26 @@ body#dark .name-collection{
 
 <style>
 .detail-collection .detail .box-2{
-    height: calc(100% - 60px);
+    height: calc(100% - 20px);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .box-collection .box-content .detail-collection .detail .box-2 .image.active{
+    height: 100%;
+}
+.box-collection .box-content .detail-collection .detail .box-2 .image.active .box-image{
+    height: calc(100% - 30px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-collection .box-content .detail-collection .detail .box-2 .image.active .box-image .box-image-show{
     padding-top: 35px;
     max-height: 100%;
     overflow: hidden;
-    overflow-y: scroll; 
+    overflow-y: scroll;
+    position: relative;
 }
 </style>
 
@@ -479,8 +507,9 @@ body#dark .name-collection{
     width: 100%;
 }
 .box-collection .box-content .detail-collection .detail .image .box-info{
-    position: fixed;
-    bottom: 78px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
 }
 .box-collection .box-content .detail-collection .detail .image .box-info .info{
     color: white;
@@ -521,6 +550,12 @@ body#dark .name-collection{
     opacity: 1;
     visibility: visible;
     transform: scale(1);
+}
+.box-collection .box-content .detail-collection .detail .image a.contact{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    color: white;
 }
 .box-collection .box-content .list-collection{
     width: 50%;
@@ -706,6 +741,16 @@ body#dark .name-collection{
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .box-collection .box-content .list-collection-mobile .box-active .item.active a.contact{
+        position: absolute;
+        right: 15px;
+        top: unset;
+        bottom: 15px;
+        background: none;
+        width: auto;
+        height: auto;
+        font-size: 14px;
     }
     .box-collection .box-content .list-collection-mobile .box-active .item.active .box-info{
         position: absolute;

@@ -33,4 +33,8 @@ class CollectionController extends Controller
         };
         return view("artist.collection", compact("collections","post","default","postDefault"));
     }
+    public function image(Post $postModel, $id){
+        $item = $postModel->where("id", $id)->first();
+        return view("artist.image", compact("item"));
+    }
 }
