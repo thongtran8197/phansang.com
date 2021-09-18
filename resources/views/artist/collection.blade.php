@@ -628,7 +628,7 @@ body#dark .name-collection{
         width: 100%;
         margin: 0px;
         background: none;
-        position: absolute;
+        position: fixed;
         top: 70px;
         right: 0px;
         z-index: 10;
@@ -730,7 +730,8 @@ body#dark .name-collection{
     .box-collection .box-content .list-collection-mobile .box-active .item.active a{
         position: absolute;
         right: 15px;
-        top:15px;
+        top: 15px;
+        z-index: 9999;
         cursor: pointer;
         outline: none;
         border: none;
